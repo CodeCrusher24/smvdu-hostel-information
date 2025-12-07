@@ -1,33 +1,69 @@
 <!-- 
   Footer Component
-  Redesigned for modern, pleasant look with clear separation and spacing.
+  SMVDU Footer with four columns: University Info, Useful Links, Important Links, and optional Weather
 -->
-<footer class="dtu-footer-bar">
-  <div class="footer-main">
-    <div class="footer-col footer-col-left">
-      <div class="footer-logo-title" style="display: flex; align-items: center; gap: 12px;">
-        <img id="footer-dtu-logo" src="images/dtu-logo.png" alt="DTU Logo" style="height: 48px; width: auto;" />
-        <span class="dtu-footer-title">Delhi Technological University Hostels</span>
+<footer class="smvdu-footer-bar"
+  style="background-color: #003366; color: #ffffff; padding: 20px 20px 10px; font-family: Arial, sans-serif;">
+  <div class="footer-main"
+    style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 15px;">
+
+    <!-- Left Column: University Information -->
+    <div class="footer-col-left">
+      <div class="footer-logo-section" style="margin-bottom: 20px;">
+        <img id="footer-smvdu-logo" src="images/smvdu-logo.png" alt="SMVDU Logo"
+          style="height: 60px; width: auto; margin-bottom: 10px;" />
+        <div style="font-size: 0.85rem; color: #ff6600; margin-top: 5px;">विज्ञानं ब्रह्म</div>
       </div>
-      <div class="dtu-footer-copy">&copy; 2014-<span id="current-year"></span> DTU Hostel. All rights reserved.</div>
-      <div class="dtu-footer-links-vertical">
-        <a href="/index.html">Home</a>
-        <a href="/pages/utility/contact.html">Contact</a>
-        <a href="/pages/utility/feedback-form.html">Feedback</a>
-        <a href="/pages/disclaimer.html">Disclaimer</a>
+      <div style="font-size: 1rem; font-weight: 600; margin-bottom: 15px;">Shri Mata Vaishno Devi University</div>
+      <div style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">
+        Katra, Jammu and Kashmir 182320
+      </div>
+      <div style="font-size: 0.9rem; line-height: 1.6;">
+        <div><strong>Direct Line:</strong> 8899988387</div>
+        <div><strong>Email:</strong> <a href="mailto:info@smvdu.ac.in"
+            style="color: #ffffff; text-decoration: none;">info@smvdu.ac.in</a></div>
       </div>
     </div>
-    <div class="footer-col footer-col-right footer-col-right-align">
-      <div class="footer-address-title">Hostel Office, Transit Hostel (Ramanujan Hostel)</div>
-      <div>Delhi Technological University</div>
-      <div>Shahbad Daulatpur, Main Bawana Road</div>
-      <div>Delhi - 42, India</div>
-      <div style="height: 8px;"></div>
-      <div><strong>Chief Warden:</strong> Prof. Raj Kumar Singh</div>
-      <div><strong>OIC, Hostel Office:</strong> Dr. Sanjay Patidar</div>
-      <div><strong>Email:</strong> <a href="mailto:hostels@dtu.ac.in">hostels@dtu.ac.in</a></div>
-      <div><strong>Contact:</strong> +911-27852204, 9716304018, 9555902621 Extn: 1104, 1113</div>
-      <div class="footer-contact-note">Available 10 a.m. to 5 p.m. on working days.</div>
+
+
+
+    <!-- Fourth Column: Hostel Information (replacing Weather) -->
+    <div class="footer-col-hostel">
+      <div
+        style="font-size: 1rem; font-weight: 600; margin-bottom: 15px; border-bottom: 2px solid #00cc66; padding-bottom: 5px; display: inline-block;">
+        Hostel Information
+      </div>
+      <div style="font-size: 0.9rem; line-height: 1.6;">
+        <div style="margin-bottom: 10px;"><strong>Hostel Office</strong></div>
+        <div style="margin-bottom: 10px;">Shri Mata Vaishno Devi University</div>
+        <div style="margin-bottom: 10px;">Katra, Jammu and Kashmir 182320</div>
+        <div style="margin-bottom: 10px;"><strong>Email:</strong> <a href="mailto:hostels@smvdu.ac.in"
+            style="color: #ffffff; text-decoration: none;">hostels@smvdu.ac.in</a></div>
+        <div><strong>Contact:</strong> 8899988387</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom"
+    style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
+    <div style="font-size: 0.9rem;">
+      Copyright © SMVDU <span id="current-year"></span>. All Rights Reserved
+    </div>
+    <div class="blink-text" style="font-size: 0.9rem; color: #ff0000; font-weight: 600;">
+      The Only Official Website
+    </div>
+    <div class="footer-social-icons" style="display: flex; gap: 12px; align-items: center;">
+      <a href="https://www.facebook.com/SMVDUniversity/" target="_blank"><img id="footer-facebook-logo" src=""
+          alt="Facebook" style="height: 24px; width: 24px;" /></a>
+      <a href="https://www.linkedin.com/school/shri-mata-vaishno-devi-university/" target="_blank"><img
+          id="footer-linkedin-icon" src="" alt="LinkedIn" style="height: 24px; width: 24px;" /></a>
+      <a href="https://twitter.com/smvduofficial" target="_blank"><img id="footer-x-icon" src="" alt="X"
+          style="height: 24px; width: 24px;" /></a>
+      <a href="https://www.youtube.com/SMVDUniversity" target="_blank"><img id="footer-youtube-icon" src=""
+          alt="YouTube" style="height: 24px; width: 24px;" /></a>
+      <a href="https://www.instagram.com/smvduniversityofficial/" target="_blank"><img id="footer-instagram-icon" src=""
+          alt="Instagram" style="height: 24px; width: 24px;" /></a>
     </div>
   </div>
 </footer>

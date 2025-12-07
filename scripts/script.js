@@ -20,49 +20,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const normalizedPath = currentPath.replace(/\\/g, '/');
   
   // Count directory levels to build the correct relative path
-  const segments = normalizedPath.split('/').filter(segment => segment.length > 0);
+  // Exclude index.html from segments to get accurate directory depth
+  const segments = normalizedPath.split('/').filter(segment => segment.length > 0 && segment !== 'index.html');
   
-  // Check for the workspace name in the path to determine true depth
-  const workspaceNameOptions = ['dtu type website', 'dtu-website', 'website', 'dtu'];
-  let startIndex = -1;
+  // Check if we're inside the Dtu-type-website folder (Live Server scenario)
+  const projectRootIndex = segments.indexOf('Dtu-type-website');
   
-  // Try to find any of the workspace name options in the path
-  segments.forEach((segment, index) => {
-    workspaceNameOptions.forEach(nameOption => {
-      if (segment.toLowerCase().includes(nameOption.toLowerCase())) {
-        startIndex = index;
-      }
-    });
-  });
-  
-  // Calculate the real depth from the workspace root
   let depth = 0;
   
-  // If we found a workspace name marker, use it to calculate depth
-  if (startIndex > -1) {
-    depth = segments.length - startIndex - 1;
+  if (projectRootIndex >= 0) {
+    // We're inside the project folder served by Live Server
+    // Calculate depth from the project root (Dtu-type-website)
+    // segments after 'Dtu-type-website' determine depth
+    depth = segments.length - projectRootIndex - 1;
   } else {
-    // Otherwise, try to determine depth based on known page patterns
+    // Fallback: determine depth based on known page patterns
     const isInPages = segments.includes('pages');
     if (isInPages) {
       const pagesIndex = segments.indexOf('pages');
       depth = segments.length - pagesIndex;
-    } else if (segments.includes('index.html') || segments.length === 0) {
-      depth = 0;
     } else {
-      // Default to counting all segments if we can't determine otherwise
-      depth = segments.length;
+      depth = 0;
     }
   }
   
-  // Build the path to root
+  // Build the path to root using relative paths
   for (let i = 0; i < depth; i++) {
     pathToRoot += '../';
   }
   
-  // If we're at the root, pathToRoot will be empty, so set it to "./"
+  // If we're at the root, pathToRoot will be empty
   if (pathToRoot === '') {
     pathToRoot = './';
+  }
+  
+  // SPECIAL FIX for Live Server: If we're at project root and it's served from parent,
+  // we need to use absolute paths starting with /Dtu-type-website/
+  if (projectRootIndex >= 0 && depth === 0) {
+    // At project root (/Dtu-type-website/index.html)
+    // Use absolute path from server root
+    pathToRoot = '/Dtu-type-website/';
   }
   
   // Store the pathToRoot as a global variable for other scripts to use
@@ -71,8 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Debug info for development
   console.log('Current path:', normalizedPath);
   console.log('Segments:', segments);
+  console.log('Project root index:', projectRootIndex);
   console.log('Depth:', depth);
   console.log('Path to root:', pathToRoot);
+  
+  // Update favicon to SMVDU logo on all pages
+  updateFavicon(pathToRoot);
   
   // First load the header-loader.js script
   loadScript(pathToRoot + 'scripts/header-loader.js')
@@ -134,6 +135,24 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
+ * Updates the favicon to SMVDU logo on all pages
+ * 
+ * @param {string} pathToRoot - The relative path to the website root
+ */
+function updateFavicon(pathToRoot) {
+  // Remove existing favicon links
+  const existingFavicons = document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
+  existingFavicons.forEach(link => link.remove());
+  
+  // Create new favicon link with SMVDU logo
+  const favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.type = 'image/png';
+  favicon.href = pathToRoot + 'images/smvdu-logo.png';
+  document.head.appendChild(favicon);
+}
+
+/**
  * Function to dynamically load a JavaScript file
  * 
  * @param {string} src - Path to the script file
@@ -143,8 +162,14 @@ function loadScript(src) {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = src;
-    script.onload = resolve;
-    script.onerror = reject;
+    script.onload = () => {
+      console.log('Successfully loaded script:', src);
+      resolve();
+    };
+    script.onerror = (error) => {
+      console.error('Failed to load script:', src, error);
+      reject(new Error(`Failed to load script: ${src}`));
+    };
     document.head.appendChild(script);
   });
 }
@@ -174,12 +199,12 @@ function loadComponents(pathToRoot, depth) {
   // Load footer component
   loadComponent("footer", pathToRoot + "components/footer.html").then(() => {
     // Fix the footer logo path after footer loads
-    const footerLogo = document.getElementById('footer-dtu-logo');
+    const footerLogo = document.getElementById('footer-smvdu-logo');
     if (footerLogo) {
-      let logoPath = pathToRoot + 'images/dtu-logo.png';
+      let logoPath = pathToRoot + 'images/smvdu-logo.png';
       footerLogo.onerror = function() {
         this.onerror = null;
-        this.src = '../../images/dtu-logo.png';
+        this.src = '../../images/smvdu-logo.png';
       };
       footerLogo.src = logoPath;
     }
