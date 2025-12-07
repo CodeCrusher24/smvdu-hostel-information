@@ -1,92 +1,85 @@
-# 🏛️ DTU Hostel Management Website
+# 🏛️ SMVDU Hostel Management Website
 
-> A frontend prototype for Delhi Technological University's Hostel Management Department
+> A frontend prototype for Shri Mata Vaishno Devi University's Hostel Management Department
 
 ## 📋 Overview
 
-This is a **frontend prototype** created for the Hostel Management Department of **Delhi Technological University (DTU)**. It serves as a **sample submission** and is not an official DTU website. The project demonstrates frontend capabilities using **vanilla HTML, CSS, and JavaScript**.
+This is a **frontend prototype** created for the Hostel Management Department of **Shri Mata Vaishno Devi University (SMVDU)**. It serves as a comprehensive portal for hostel-related information, administrative details, and grievance redressal. The project demonstrates frontend capabilities using **vanilla HTML, CSS, and JavaScript**.
 
-🔗 **Live Demo**: [View Website](https://hostels-dtu.netlify.app/) ✅
+🔗 **HMS Portal**: [View Portal](https://smvdu-hostels.netlify.app/)
 
 ## ✨ Features
 
 - 🖥️ **Strictly desktop-only layout** (viewport width=1200px)
-- 🧩 Dynamic component loading (header, navbar, sidebar, footer)
-- 🖼️ Homepage image slideshow
-- 📰 Sidebar always on the right of main content
-- 📄 Consistent favicon and footer logo on all pages/components
-- 📂 Robust dynamic path handling for images and components
-- 📥 PDF/document download links use the convention `documents/NAME.pdf`
-- 📐 Standardized page layout for all content
-- 🚀 Pure HTML/CSS/JavaScript implementation
+- 🧩 **Dynamic component loading** (header, navbar, sidebar, footer) loaded via JavaScript.
+- 🖼️ **AI-Generated Imagery**: Custom AI-generated exterior views for each hostel.
+- 🔄 **Auto-updating components**: Footer social icons and header details dynamically populate based on common scripts.
+- ⚡ **Interactive Elements**:
+  - Blinking "Official Website" indicator in the footer.
+  - Homepage image slideshow with 8 hostel feature images.
+  - Dropdown navigation menus.
+- 📰 **Sidebar Widget**: Reusable sidebar component for announcements (search removed for cleaner UI).
+- 📂 **Robust Layout**:
+  - Consistent header/footer across all pages.
+  - Standardized "About Us", "Hostels", and "Fees" page layouts.
+- 📱 **Responsive-aware**: While desktop-focused, includes basic touch detection for dropdowns on touch devices.
 
 ## 🏗️ Project Structure
 
 ```
 /
 ├── index.html              # Homepage
+├── README.md               # Project documentation
 ├── components/             # Reusable HTML components
-│   ├── footer.html
-│   ├── header.html
-│   ├── navbar.html
-│   ├── sidebar-widget.html
-│   └── slideshow.html
-├── documents/             # Downloadable documents/forms (PDFs, etc.)
-├── images/                # Image assets
-│   └── hostels/           # Hostel-specific images
-├── pages/                 # Website content pages
-│   ├── about-us/          # About, council, anti-ragging, etc.
-│   ├── fees/              # Fee structure, payment, etc.
-│   ├── hostels/
-│   │   ├── boys/
-│   │   └── girls/
-│   └── utility/           # Contact, feedback, performa
-├── scripts/               # JavaScript files
-│   ├── script.js
-│   ├── fix-sidebar.js
-│   ├── header-loader.js
-│   └── update-page-titles.js
+│   ├── footer.html         # Footer with blinking text & social icons
+│   ├── header.html         # Header with SMVDU logo & right-aligned content
+│   ├── navbar.html         # Main navigation with dropdowns
+│   ├── sidebar-widget.html # Sidebar for recent posts
+│   └── slideshow.html      # Slideshow component template
+├── documents/              # Downloadable documents/forms
+├── images/                 # Image assets
+│   ├── hostels/            # AI-generated hostel exterior images
+│   ├── smvdu-logo.png      # University logo
+│   ├── vc.png              # Vice Chancellor's image
+│   └── ...                 # Social icons and other assets
+├── pages/                  # Website content pages
+│   ├── about-us/           # VC Message, Wardens Council, Anti-Ragging, etc.
+│   ├── fees/               # Fee structure, payment procedures
+│   ├── hostels/            # Individual pages for Boys' and Girls' hostels
+│   ├── utility/            # Contact, feedback, and portals
+│   └── xyz-portal.html     # Legacy portal page
+├── scripts/                # JavaScript files
+│   ├── script.js           # Main logic (path handling, component loading)
+│   ├── header-loader.js    # Logic for dynamic header/footer icon loading
+│   └── ...                 # Helper scripts
 └── styles/
-    └── style.css
+    └── style.css           # Main stylesheet including animations
 ```
 
 ## 🛠️ Development Tools
 
-The project includes Node.js scripts used for development and maintenance:
+The project includes custom scripts for maintenance:
 
-| Script                  | Purpose                                     |
-| ----------------------- | ------------------------------------------- |
-| `fix-sidebar.js`        | Fixes sidebar class names across HTML pages |
-| `update-page-titles.js` | Updates `<title>` sections site-wide        |
-| `header-loader.js`      | Resolves image paths dynamically in JS      |
-
-> **Note**: These tools were used for development only. The deployed website runs without any server-side code or Node.js dependencies.
+| Script               | Purpose                                                 |
+| -------------------- | ------------------------------------------------------- |
+| `script.js`          | Core logic for path resolution and component injection. |
+| `header-loader.js`   | Dynamically loads and fixes paths for header/footer icons. |
 
 ## 🌐 Browser Support
 
-- ✅ Chrome (latest 2 versions)
-- ✅ Firefox (latest 2 versions)
-- ✅ Edge
-- ✅ Safari
+- ✅ Chrome (Latest)
+- ✅ Firefox (Latest)
+- ✅ Edge (Latest)
+- ✅ Safari (Latest)
 
-> **Note:** The site is **desktop-only**. On mobile devices, users will need to zoom and scroll to view content.
+> **Note:** The site is designed as a **desktop-first experience**. Mobile users will see the full desktop layout scaled down.
 
-## 🖥️ Desktop-Only Experience
+## 🖥️ Layout & Design
 
-- All pages use `<meta name="viewport" content="width=1200" />` for a fixed-width desktop layout.
-- No mobile or tablet layout is provided. The site will not reflow for small screens.
-- To add a new page, always include the desktop viewport meta tag in the `<head>`:
-  ```html
-  <meta name="viewport" content="width=1200" />
-  ```
-- The sidebar is always displayed to the right of the main content.
-- The favicon and footer logo are present and robustly loaded on every page/component.
-- All image and component paths are dynamically resolved for every page depth.
-
-## 📥 Document Download Convention
-
-- All downloadable PDFs and documents are placed in the `documents/` folder.
-- Download links use the format: `documents/NAME.pdf` (spaces replaced with underscores, special characters removed).
+- **Viewport**: Fixed width of `1200px`.
+- **Navigation**: Top-bar with official links, primary navbar with specific categories.
+- **Footer**: Compact 2-column layout with essential links and university contact info.
+- **Images**: High-quality assets located in `images/` directory.
 
 ## 👨‍💻 Author
 
@@ -99,5 +92,5 @@ This project is for educational and demonstration purposes.
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for DTU Hostel Management Department</sub>
+  <sub>Built with ❤️ for SMVDU Hostel Management Department</sub>
 </div>
